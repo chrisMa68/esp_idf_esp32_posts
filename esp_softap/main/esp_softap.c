@@ -7,6 +7,7 @@
 #include "esp_wifi.h"
 #include "esp_event_loop.h"
 #include "esp_log.h"
+#include "nvs_flash.h"
 
 #define AP_SSID "XXXXXX"
 #define AP_PASSPHARSE "XXXXXXXX"
@@ -124,6 +125,7 @@ void print_sta_info(void *pvParam){
 
 void app_main()
 {	
+    nvs_flash_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     wifi_event_group = xEventGroupCreate();
     start_dhcp_server();
